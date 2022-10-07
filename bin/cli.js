@@ -12,7 +12,7 @@ const runCommand = (command) => {
 
 const repoName = process.argv[2]
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/piemree/expressts.git ${repoName}`
-const initGitCommand = `cd ${repoName} git init`
+const initGitCommand = `cd ${repoName} && git init`
 const installDepsCommand = `cd ${repoName} && npm install`
 
 console.log(`Cloning the repository with name ${repoName}`);

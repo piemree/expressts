@@ -11,12 +11,17 @@ const runCommand = (command) => {
 }
 
 const repoName = process.argv[2]
-const gitCheckoutCommand = `git clone https://github.com/piemree/expressts.git ${repoName}`
+const gitCheckoutCommand = `git clone --depth 1 https://github.com/piemree/expressts.git ${repoName}`
+const initGitCommand = `cd ${repoName} git init`
 const installDepsCommand = `cd ${repoName} && npm install`
 
 console.log(`Cloning the repository with name ${repoName}`);
 const chechedOut = runCommand(gitCheckoutCommand)
 if (!chechedOut) process.exit(-1)
+
+console.log(`Initializing git repository for ${repoName}`);
+const initGit = runCommand(initGitCommand)
+if (!initGit) process.exit(-1)
 
 console.log(`Installing dependencies for ${repoName}`);
 const installDeps = runCommand(installDepsCommand)
